@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto</title>
+    <link rel="stylesheet" href="producto.css">
+</head>
+<body>
+    <header>    
+        <nav class="navbar">
+            <div class="Logo">
+                <h1> Gamer Shop</h1>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="producto.html">Productos</a></li>
+                <li><a href="#">Ofertas</a></li>
+                <li><a href="#">Nosotros</a></li>
+                <li><a href="#">Contacto</a></li>
+          </ul>
+
+          <div class="nav-actions">
+            <a href="#" id="cart-icon">🛒 <span id="cart-count" class="cart-count">0</span></a>
+            <a href="login.html" class="btn-login">Login</a>
+          </div>
+          <button onclick=""></button>
+        </nav>
+    </header>
+
+    <main class="productos-main">
+     <div id="contenedor-productos" class="product-grid"></div>
+    </main>
+
+
+
+ <div id="carrito-lateral" class="carrito-hidden">
+    <div class="carrito-header">
+        <h2>Tu Carrito</h2>
+        <button id="cerrar-carrito">X</button>
+    </div>
+    
+    <div id="lista-carrito">
+        <p class="carrito-vacio">El carrito está vacío</p>
+    </div>
+
+    <div class="carrito-footer">
+        <p>Total: <span id="total-precio">$0</span></p>
+        <button class="btn-pagar">Finalizar Compra</button>
+    </div>
+ </div>
+
+ <footer class="footer">
+        <p>&copy; 2024 Gamer Shop. Todos los derechos reservados.</p>
+    </footer>
+
+
+
+    <script src="JS.js"></script>
+
+ 
+</body>
+</html>
