@@ -139,6 +139,13 @@ body {
 .hero-content p { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; }
 
 /* --- PRODUCTOS --- */
+
+
+.productos-main h2 {
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+}
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 

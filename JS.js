@@ -156,3 +156,38 @@ iconoCarrito.addEventListener("click", (e) => {
 btnCerrar.addEventListener("click", () => {
     carritoVentana.classList.remove("carrito-activo");
 });
+
+
+// Simulacion de compra
+
+// Seleccionamos el botón de finalizar compra
+const btnPagar = document.querySelector(".btn-pagar");
+
+if (btnPagar) {
+    btnPagar.addEventListener("click", () => {
+        // 1. Verificamos si hay productos en el carrito
+        if (carrito.length === 0) {
+            alert("Tu carrito está vacío. ¡Añade algunos juegos antes de comprar!");
+            return;
+        }
+
+        // 2. Calculamos el total para el mensaje final
+        const total = carrito.reduce((suma, p) => suma + p.price, 0);
+
+        // 3. Simulamos el procesamiento (puedes añadir un mensaje de 'Procesando...')
+        alert(`🎮 ¡Gracias por tu compra en GamerShop!\n\nHas adquirido ${carrito.length} productos.\nTotal pagado: $${total.toFixed(2)}\n\nTe enviaremos los códigos a tu correo.`);
+
+        // 4. Vaciamos el array del carrito
+        carrito = [];
+
+        // 5. Actualizamos el contador visual
+        const spanContador = document.getElementById("cart-count");
+        if (spanContador) spanContador.innerText = "0";
+
+        // 6. Volvemos a dibujar el carrito (ahora vacío)
+        renderizarCarrito();
+
+        // 7. Cerramos el carrito lateral automáticamente
+        document.getElementById("carrito-lateral").classList.remove("carrito-activo");
+    });
+}
