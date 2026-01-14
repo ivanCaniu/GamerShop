@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - GamerShop</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-body">
+    <div class="auth-container">
+        <h2>Iniciar Sesión</h2>
+        <form id="login-form">
+            <div class="input-box">
+                <input type="text" placeholder="Usuario o Correo" required>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="btn-primary">Ingresar</button>
+        </form>
+        <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a></p>
+        <a href="index.html" class="back-link">← Volver a la tienda</a>
+    </div>
+
+    <script>
+        // Este código solo vive en login.html
+        const formulario = document.getElementById("login-form");
+
+        if (formulario) {
+            formulario.addEventListener("submit", (e) => {
+                e.preventDefault(); // Evita que la página se recargue sola
+                
+                // 1. Simulamos éxito (aquí podrías validar usuario/pass)
+                alert("¡Bienvenido de nuevo a GamerShop!");
+                
+                // 2. Guardamos la sesión en el navegador (permanece aunque cierres la pestaña)
+                localStorage.setItem("sesionActiva", "true");
+                
+                // 3. Redirigimos al index
+                window.location.href = "index.html";
+            });
+        }
+    </script>
+
+</body>
+
+</html>

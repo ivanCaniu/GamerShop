@@ -41,6 +41,9 @@ const products = [
 
 ]
 
+let usuarioLogueado = localStorage.getItem("sesionActiva") === "true";
+
+
 // 1. Seleccionamos el lugar donde se mostrarán
 const contenedor = document.getElementById("contenedor-productos");
 
@@ -171,6 +174,13 @@ if (btnPagar) {
             return;
         }
 
+        if (!usuarioLogueado) {
+            alert("Debes iniciar sesión para finalizar tu compra.");
+            // Redirigir a la nueva pantalla de login que creamos
+            window.location.href = "login.html"; 
+            return;
+        }
+
         // 2. Calculamos el total para el mensaje final
         const total = carrito.reduce((suma, p) => suma + p.price, 0);
 
@@ -184,10 +194,23 @@ if (btnPagar) {
         const spanContador = document.getElementById("cart-count");
         if (spanContador) spanContador.innerText = "0";
 
-        // 6. Volvemos a dibujar el carrito (ahora vacío)
+        // 6. Volvemos a dibujar el carrito vacío
         renderizarCarrito();
 
         // 7. Cerramos el carrito lateral automáticamente
         document.getElementById("carrito-lateral").classList.remove("carrito-activo");
     });
 }
+
+document.getElementById("login-form").addEventListener("submit", (e) => {
+    e.preventDefault(); // Evita que la página se recargue
+    
+    // Aquí iría la validación real de usuario/contraseña
+    alert("¡Inicio de sesión exitoso!");
+    
+    // Guardamos en el navegador que el usuario ya entró
+    localStorage.setItem("sesionActiva", "true");
+    
+    // Volvemos a la tienda
+    window.location.href = "index.html";
+});
