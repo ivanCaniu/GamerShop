@@ -1,3 +1,4 @@
+/* --- RESET Y BASES --- */
 * {
     margin: 0;
     padding: 0;
@@ -6,42 +7,48 @@
 }
 
 body {
-    
     background-color: #121212; 
     line-height: 1.6;
-    padding-top: 80px;
+    padding-top: 110px; 
+    overflow-x: hidden;
 }
 
+/* --- NAVBAR (CORREGIDO) --- */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
     padding: 15px 5%;
     background-color: #1e1e1e;
     border-bottom: 2px solid #00ff88;
-
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
+    top: 0;
     z-index: 1000;
 }
 
-.Logo h1 {
-    color: white;
-    font-size: 1.5rem;
-}
-
-
-.nav-links {
+/* Bloques para equilibrar el centro */
+.Logo { flex: 1; }
+.nav-links { 
     display: flex;
     list-style: none;
+    gap: 25px;
+    justify-content: center;
+    flex: 2; 
+}
+.nav-actions { 
+    display: flex;
     align-items: center;
+    gap: 20px;
+    justify-content: flex-end;
+    flex: 1; 
 }
 
-.nav-links li {
-    margin: 0 15px; 
+.Logo h1 {
+    color: white; 
+    font-size: 1.5rem; 
 }
+
 
 .nav-links a {
     text-decoration: none;
@@ -49,161 +56,151 @@ body {
     font-weight: 600;
     transition: 0.3s;
 }
+.nav-links a:hover { color: #00ff88; }
 
-.nav-links a:hover {
-    color: #00ff88;
-}
-
-/* Contenedor de Carrito + Login */
-.nav-actions {
-    display: flex;
-    align-items: center; 
-    gap: 20px; /*  Espacio constante entre carrito y botón */
-}
-
+/* --- ICONO CARRITO Y CONTADOR --- */
 #cart-icon {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: white;
-    gap: 8px; /*  Espacio entre el emoji y el número */
-    font-size: 1.1rem;
-    transition: 0.3s;
-}
-
-#cart-icon:hover {
-    transform: scale(1.1); 
+    font-size: 1.3rem;
+    position: relative; 
 }
 
 .cart-count {
-    color: #00ff88;      
+    position: absolute;  
+    top: -8px;           
+    right: -10px;        
+    background-color: #00ff88; 
+    color: black;
+    border-radius: 50%;
+    font-size: 0.7rem;
     font-weight: bold;
-    font-size: 1rem;
+    min-width: 20px;
+    height: 20px;
+    display: flex;       
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #1e1e1e;
 }
 
-.btn-login {
+/* --- BOTONES (RECUPERANDO EL COLOR) --- */
+.btn-login, .btn-primary, .btn-secondary, .btn-pagar {
     background-color: #00ff88;
     color: black;
-    padding: 8px 20px;
+    padding: 10px 20px;
     border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
+    border: none;
+    cursor: pointer;
     transition: 0.3s;
+    display: inline-block;
 }
 
-.btn-login:hover {
+.btn-login:hover, .btn-primary:hover, .btn-secondary:hover, .btn-pagar:hover {
     background-color: #00cc6a; 
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5); /* Efecto de brillo */
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
 }
 
+.btn-add {
+    background-color: transparent;
+    color: #00ff88;
+    border: 2px solid #00ff88;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.btn-add:hover {
+    background-color: #00ff88;
+    color: black;
+}
+
+/* --- HERO SECTION --- */
 .hero {
-    height: 90vh; /* Ocupa el 80% de la altura de la pantalla */
+    height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('tu-imagen-fondo.jpg');
-    background-size: cover;
-    background-position: center;
 }
 
 .hero-content h1 {
     font-size: 3.5rem;
-    margin-bottom: 20px;
     color: white;
+    margin-bottom: 20px;    
 }
 
+.hero-content p { font-size: 1.2rem; color: #ccc; margin-bottom: 30px; }
 
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    max-width: 600px;
-    margin-inline: auto;
-    color: white;
-}
-
-.btn-primary {
-    background-color: #00ff88;
-    color: black;
-    padding: 12px 25px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    margin: 10px;
-    display: inline-block;
-}
-
-.btn-secondary {
-    background-color: #00ff88;
-    color: black;
-    padding: 12px 25px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    margin: 10px;
-    display: inline-block;
-}
-
-
-
-
-
-
-.container {
-    padding: 60px 5%;
-    max-width: 1200px;
-    margin: 0 auto;
-    color: white;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 40px;
-}
-
-
-
+/* --- PRODUCTOS --- */
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 25px;
+    padding: 40px 5%;
+   
 }
 
-/* Estilo de la Tarjeta de Producto */
 .product-card {
-    background-color: #1e1e1e; /* Color de fondo de tarjeta */
+    background-color: #1e1e1e; 
     border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.3s;
     border: 1px solid #333;
+    transition: 0.3s;
+    text-align: center;
+    height: 100;
+    display: flex;
+    flex-direction: column; 
 }
 
 .product-card:hover {
-    transform: translateY(-10px); /* Efecto de levitación */
-    border-color: #00ff88;
+    border-color: #00ff88; 
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
 }
 
 .product-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+   width: 100%;
+    height: 320px;
+    object-fit: cover; 
+    border-bottom: 1px solid #333;       
 }
 
 .product-info {
     padding: 20px;
-    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
 }
 
 .product-info h3 {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
+    color: white;
+    font-size: 1.1rem;
+    margin-top: 10px;    
+    margin-bottom: 10px; 
+    min-height: 2.5em; /*  Mantiene alineación con nombres cortos */
+}
+
+.platform {
+    color: #888;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
 }
 
 .price {
     color: #00ff88;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bold;
+    margin-top: auto; /*  Empuja el precio al fondo */
     margin-bottom: 15px;
 }
 
@@ -220,68 +217,69 @@ body {
 }
 
 .btn-add:hover {
-    background-color:#00ff88;
+    background-color: #00ff88;
     color: black;
 }
 
-
-.footer {
+/* --- CARRITO LATERAL (FIXED OVERLAY) --- */
+#carrito-lateral {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 350px;
+    height: 100vh;
     background-color: #1e1e1e;
-    color: white;
-    padding: 20px 3% 10px;
-    border-top: 2px solid #333;
-    margin-top: 150px;
+    border-left: 2px solid #00ff88;
+    z-index: 2000; 
+    padding: 20px;
+    display: flex;           
+    flex-direction: column;  
+    transform: translateX(100%); 
+    transition: transform 0.4s ease;
 }
 
-.footer-container {
+.carrito-activo { transform: translateX(0) !important; }
+
+.carrito-header {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap; 
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
+    align-items: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 15px;
+    color: white;
 }
 
-.footer-about, .footer-links, .footer-contact {
-    flex: 1;
-    min-width: 250px;
+#cerrar-carrito { background: none; border: none; color: #00ff88; font-size: 1.5rem; cursor: pointer; }
+
+#lista-carrito {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-top: 20px;
+    color: white;
 }
 
-
-.footer h3 {
-    margin-bottom: 20px;
-    border-left: 3px solid #00ff88;
-    padding-left: 10px;
+.carrito-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
 }
 
-.footer-links ul {
-    list-style: none;
-}
+.carrito-item img { width: 50px; height: 60px; object-fit: cover; border-radius: 4px; }
 
-.footer-links li {
-    margin-bottom: 5px;
-}
-
-.footer-links a {
-    color: #ccc;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.footer-links a:hover {
-    color: #00ff88;
-    padding-left: 5px;
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
+.carrito-footer {
     border-top: 1px solid #333;
-    font-size: 0.9rem;
-    color: #888;
+    padding-top: 20px;
+    color: white;
 }
 
+#total-precio { color: #00ff88; font-weight: bold; }
 
-
-    
+/* --- FOOTER --- */
+.footer { background-color: #1e1e1e; color: white; padding: 60px 5% 20px; border-top: 2px solid #333; margin-top: 100px; }
+.footer-container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+.footer h3 { margin-bottom: 20px; border-left: 3px solid #00ff88; padding-left: 10px; }
+.footer-links a { color: #ccc; text-decoration: none; }
+.footer-links a:hover { color: #00ff88; }

@@ -1,3 +1,4 @@
+/* --- RESET Y BASES --- */
 * {
     margin: 0;
     padding: 0;
@@ -11,39 +12,42 @@ body {
     padding-top: 80px; 
 }
 
-
+/* --- NAVBAR (CORREGIDO) --- */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
     padding: 15px 5%;
     background-color: #1e1e1e;
     border-bottom: 2px solid #00ff88;
     position: fixed;
-    top: 0;
-    left: 0;
     width: 100%;
+    top: 0;
     z-index: 1000;
 }
 
-.Logo h1 {
-    color: white;
-    font-size: 1.5rem;
-}
-
-.Logo h1 span {
-    color: #00ff88; 
-}
-
-.nav-links {
+/* Bloques para equilibrar el centro */
+.Logo { flex: 1; }
+.nav-links { 
     display: flex;
     list-style: none;
+    gap: 25px;
+    justify-content: center;
+    flex: 2; 
+}
+.nav-actions { 
+    display: flex;
     align-items: center;
+    gap: 20px;
+    justify-content: flex-end;
+    flex: 1; 
 }
 
-.nav-links li {
-    margin: 0 15px; 
+.Logo h1 {
+    color: white; 
+    font-size: 1.5rem; 
 }
+
 
 .nav-links a {
     text-decoration: none;
@@ -51,112 +55,52 @@ body {
     font-weight: 600;
     transition: 0.3s;
 }
+.nav-links a:hover { color: #00ff88; }
 
-.nav-links a:hover {
-    color: #00ff88;
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center; 
-    gap: 20px;
-}
-
+/* --- ICONO CARRITO Y CONTADOR --- */
 #cart-icon {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: white;
-    gap: 8px;
-    font-size: 1.1rem;
-    transition: 0.3s;
+    font-size: 1.3rem;
+    position: relative; 
 }
 
 .cart-count {
-    color: #00ff88;      
+    position: absolute;  
+    top: -8px;           
+    right: -10px;        
+    background-color: #00ff88; 
+    color: black;
+    border-radius: 50%;
+    font-size: 0.7rem;
     font-weight: bold;
+    min-width: 20px;
+    height: 20px;
+    display: flex;       
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #1e1e1e;
 }
 
-.btn-login {
+/* --- BOTONES (RECUPERANDO EL COLOR) --- */
+.btn-login,  .btn-pagar {
     background-color: #00ff88;
     color: black;
-    padding: 8px 20px;
+    padding: 10px 20px;
     border-radius: 4px;
     text-decoration: none;
     font-weight: bold;
-}
-
-.btn-login:hover {
-   background-color: #00cc6a; 
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5); /* Efecto de brillo */
-}
-
-
-.product-grid {
-    display: grid;
-    /*  Ajustado para que las tarjetas no se vean gigantes en pantallas grandes */
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-    gap: 25px;
-    padding: 40px 5%;
-    align-items: stretch; /*  Obliga a que todas las tarjetas midan lo mismo */
-}
-
-.product-card {
-    background-color: #1e1e1e; 
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid #333;
+    border: none;
+    cursor: pointer;
     transition: 0.3s;
-    text-align: center;
-    
-    /* Se añade Flexbox para controlar el contenido interno */
-    display: flex;
-    flex-direction: column; 
+    display: inline-block;
 }
 
-.product-card:hover {
-    border-color: #00ff88; 
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
-}
-
-.product-card img {
-    width: 100%;
-    height: 320px;  /*  Altura fija para todas las carátulas */
-    object-fit: cover; 
-    border-bottom: 1px solid #333;
-}
-
-.product-info {
-    padding: 20px;
-    color: white;
-    /*  Este contenedor se estira para llenar el espacio vacío */
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; 
-}
-
-.product-info h3 {
-    color: white;
-    font-size: 1.1rem;
-    margin-top: 5px;    /* ✅ Esto empuja el nombre hacia abajo */
-    margin-bottom: 5px; /* Espacio respecto al precio/descripción */
-    min-height: 2.5em;   /* Mantiene la simetría si el nombre es corto */
-}
-
-.description {
-    font-size: 0.9rem;
-    color: #aaa;
-    margin-bottom: 15px;
-    min-height: 4.5em; /*  Altura fija para que la descripción no mueva los botones */
-}
-
-.price {
-    color: #00ff88;
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    margin-top: auto; /*  Empuja el precio y botón al fondo de la tarjeta */
+.btn-login:hover,  .btn-pagar:hover {
+    background-color: #00cc6a; 
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
 }
 
 .btn-add {
@@ -176,83 +120,144 @@ body {
     color: black;
 }
 
-.cart-count {
-    display: inline-block; /* Permite que el efecto scale funcione */
-    transition: transform 0.2s ease; /* Hace que el salto sea suave */
-    background-color: #00ff88; /* Fondo verde para que parezca una notificación */
-    color: black;
-    padding: 2px 6px;
-    border-radius: 50%;
-    font-size: 0.8rem;
-    min-width: 18px;
-    text-align: center;
+
+/* --- PRODUCTOS --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 25px;
+    padding: 40px 5%;
+   
 }
 
+.product-card {
+    background-color: #1e1e1e; 
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #333;
+    transition: 0.3s;
+    text-align: center;
+    height: 100;
+    display: flex;
+    flex-direction: column; 
+}
 
+.product-card:hover {
+    border-color: #00ff88; 
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+}
 
+.product-card img {
+   width: 100%;
+    height: 320px;
+    object-fit: cover; 
+    border-bottom: 1px solid #333;       
+}
 
+.product-info {
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+}
 
+.product-info h3 {
+    color: white;
+    font-size: 1.1rem;
+    margin-top: 10px;    
+    margin-bottom: 10px; 
+    min-height: 2.5em; /*  Mantiene alineación con nombres cortos */
+}
 
+.platform {
+    color: #888;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
 
+.price {
+    color: #00ff88;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-top: auto; /*  Empuja el precio al fondo */
+    margin-bottom: 15px;
+}
 
+.btn-add {
+    background-color: transparent;
+    color: #00ff88;
+    border: 2px solid #00ff88;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.btn-add:hover {
+    background-color: #00ff88;
+    color: black;
+}
+
+/* --- CARRITO LATERAL (FIXED OVERLAY) --- */
 #carrito-lateral {
     position: fixed;
     right: 0;
     top: 0;
     width: 350px;
-    height: 100vh; /* Ocupa toda la altura */
+    height: 100vh;
     background-color: #1e1e1e;
     border-left: 2px solid #00ff88;
-    z-index: 2000; /* Para que esté por encima de todo */
+    z-index: 2000; 
     padding: 20px;
-    transition: transform 0.4s ease; /* Efecto de deslizamiento */
-    
+    display: flex;           
+    flex-direction: column;  
     transform: translateX(100%); 
+    transition: transform 0.4s ease;
 }
 
-/* Clase para ocultar el carrito moviéndolo a la derecha */
-.carrito-hidden {
-    transform: translateX(100%);
-}
-
-.carrito-activo {
-    transform: translateX(0) !important;
-}
+.carrito-activo { transform: translateX(0) !important; }
 
 .carrito-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #333;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+    color: white;
 }
 
-#cerrar-carrito {
-    background: none;
-    border: none;
-    color: #00ff88;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
+#cerrar-carrito { background: none; border: none; color: #00ff88; font-size: 1.5rem; cursor: pointer; }
 
 #lista-carrito {
     flex-grow: 1;
     overflow-y: auto;
     margin-top: 20px;
+    color: white;
 }
+
+.carrito-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+
+.carrito-item img { width: 50px; height: 60px; object-fit: cover; border-radius: 4px; }
 
 .carrito-footer {
     border-top: 1px solid #333;
     padding-top: 20px;
+    color: white;
 }
 
-.btn-pagar {
-    width: 100%;
-    background-color: #00ff88;
-    color: black;
-    padding: 15px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px;
-}
+#total-precio { color: #00ff88; font-weight: bold; }
+
+/* --- FOOTER --- */
